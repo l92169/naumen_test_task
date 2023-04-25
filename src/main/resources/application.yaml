@@ -1,0 +1,13 @@
+port: 8080
+spring:
+  datasource:
+    hikari:driver-class-name: org.h2.Driver
+    hikari:jdbc-url: jdbc:h2:bd:test_task
+    hikari:username: l92169
+    hikari:password:
+  liquibase:
+    enabled: true
+  jpa:
+    generate-ddl: true
+    properties:hibernate:
+      jdbc:lob:non_contextual_creation: true
