@@ -24,6 +24,12 @@ Web-приложение на Java, которое может:
   имен, если их нет в текстовом файле.
   Например, https://api.agify.io/?name=Jack
   
+Как запустить?
+
+- git clone https://github.com/l92169/naumen_test_task.git
+- cd naumen_test_task/
+- mvn spring-boot:run
+  
 Список ручек:
 
 - http://localhost:8080/user - главная страница
