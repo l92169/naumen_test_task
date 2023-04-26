@@ -1,7 +1,7 @@
 package ru.l92169.test_task.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -15,11 +15,11 @@ import java.util.List;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    FileServiceImpl fileService;
+
+    private final UserRepository userRepository;
+    private final FileServiceImpl fileService;
 
     @Override
     public List<User> getUsers(String name) {

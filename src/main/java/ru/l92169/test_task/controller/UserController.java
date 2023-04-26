@@ -1,5 +1,6 @@
 package ru.l92169.test_task.controller;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +15,10 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-    @Autowired
-    UserServiceImpl userService;
+    private final UserServiceImpl userService;
 
     @GetMapping("")
     public String getUserHome() {
