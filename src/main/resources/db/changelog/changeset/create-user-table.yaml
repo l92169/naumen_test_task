@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-user
+      author: LizaIlina
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(20)
+              - column:
+                  name: age
+                  type: int
+              - column:
+                  name: count
+                  type: int
+              - column:
+                  name: fromFile
+                  type: boolean
