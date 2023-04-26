@@ -26,6 +26,9 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findByName(name);
         log.info(String.format("+1 to count for %s", name));
         userRepository.addOne(name);
+        if (users.size() == 0) {
+            users = workWithExternalService(name);
+        }
         return users;
     }
 
@@ -36,9 +39,9 @@ public class UserServiceImpl implements UserService {
             List<User> users = userRepository.findByName(user.getName());
             if (users == null) {
                 userRepository.save(user);
-            }else { // если в файле такое же имя, но другой возраст, то сохраняется
+            } else { // если в файле такое же имя, но другой возраст, то сохраняется
                 boolean bool = true;
-                for (User user2 : users){
+                for (User user2 : users) {
                     if (user.getAge() == user2.getAge()) bool = false;
                 }
                 if (bool) userRepository.save(user);
@@ -53,27 +56,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> workWithExternalService(String name) {
-        User user = new User();
+        User user;
         String url = "https://api.agify.io/?name=" + name;
         RestTemplate restTemplate = new RestTemplate();
         try {
             log.info("Requesting data from an external service");
             ResponseDTO response = restTemplate.getForObject(url, ResponseDTO.class);
-            user.setName(response.getName());
-            user.setAge(response.getAge());
-            user.setCount(1);
-            if (user.getAge() == null) {
-                user.setAge(-404);
-            }
-            userRepository.save(user);
+            user = new User(response.getName(), response.getAge(), 1, false);
+            if (user.getAge() == null) user.setAge(-404);
             log.info("data received");
         } catch (HttpClientErrorException ex) {
             log.info("no data received, create user with age -404");
-            user.setName(name);
-            user.setAge(-404);
-            user.setCount(1);
+            user = new User(name, -404, 1, false);
         }
-        user.setFromFile(false);
+        userRepository.save(user);
         return List.of(user);
     }
 
