@@ -31,16 +31,19 @@ Web-приложение на Java, которое может:
 - http://localhost:8080/user/statistics - страница со статистикой
 
 http://localhost:8080/ или http://localhost:8080/user
+
 ![img_1.png](img_1.png)
 
 
 http://localhost:8080/user/get_age
+
 ![img_2.png](img_2.png)
 
 
 http://localhost:8080/user/statistics (пока не использовали внешний сервис)
+
 ![img_4.png](img_4.png)
 
-
 http://localhost:8080/user/statistics (с использованием внешнего сервиса)
+
 ![img_6.png](img_6.png)
