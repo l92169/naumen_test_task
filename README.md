@@ -16,25 +16,31 @@ Web-приложение на Java, которое может:
     - вывод имени с наибольшим возрастом. Если запрашивали человека, которого нет в файле, то он тоже может быть
       выведен. Люди, которые получили возраст 404, здесь не выводятся.
 
-Пожелания к реализации
+Пожелания к реализации:
 
 + В качестве серверного фреймворка использую Spring.
 + Приложение поддерживает работу с внешним
   сервисом, который возвращает возраст произвольных
   имен, если их нет в текстовом файле.
   Например, https://api.agify.io/?name=Jack
+  
+Список ручек:
 
-- http://localhost:8080/ или http://localhost:8080/user
+- http://localhost:8080/user - главная страница
+- http://localhost:8080/user/get_age - страница, на которой можно узнать возраст людей
+- http://localhost:8080/user/statistics - страница со статистикой
+
+http://localhost:8080/ или http://localhost:8080/user
 ![img_1.png](img_1.png)
 
 
-- http://localhost:8080/user/get_age
+http://localhost:8080/user/get_age
 ![img_2.png](img_2.png)
 
 
-- http://localhost:8080/user/statistics (пока не использовали внешний сервис)
+http://localhost:8080/user/statistics (пока не использовали внешний сервис)
 ![img_4.png](img_4.png)
 
 
-- http://localhost:8080/user/statistics (с использованием внешнего сервиса)
+http://localhost:8080/user/statistics (с использованием внешнего сервиса)
 ![img_6.png](img_6.png)
