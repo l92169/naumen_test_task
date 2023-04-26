@@ -30,13 +30,8 @@ public class UserController {
         if (name == null || name.isEmpty()) {
             String messageError = "Введите имя";
             model.addAttribute("exception", messageError);
-            return "user/get_age";
         } else {
-            name = name.trim();
-            List<User> users = userService.getUsers(name);
-            if (users.size() == 0) {
-                users = userService.workWithExternalService(name);
-            }
+            List<User> users = userService.getUsers(name.trim());
             model.addAttribute("users", users);
         }
         return "user/get_age";
