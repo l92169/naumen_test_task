@@ -33,7 +33,16 @@ public class UserServiceImpl implements UserService {
     private void init() {
         List<User> listUsers = fileService.readFile();
         for (User user : listUsers) {
-            userRepository.save(user);
+            List<User> users = userRepository.findByName(user.getName());
+            if (users == null) {
+                userRepository.save(user);
+            }else { // если в файле такое же имя, но другой возраст, то сохраняется
+                boolean bool = true;
+                for (User user2 : users){
+                    if (user.getAge() == user2.getAge()) bool = false;
+                }
+                if (bool) userRepository.save(user);
+            }
         }
     }
 
